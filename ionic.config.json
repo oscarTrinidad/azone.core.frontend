@@ -1,0 +1,7 @@
+{
+  "name": "azone.core.frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
