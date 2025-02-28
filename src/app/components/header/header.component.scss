@@ -1,0 +1,20 @@
+.user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .username {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .user-role {
+    font-size: 12px;
+    color: var(--ion-color-medium);
+  }
+
+  ion-title.custom-toolbar {
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }

@@ -1,0 +1,11 @@
+.bg-image {
+    --background: url('/assets/img/modules/fondo-color-bg.png') no-repeat center center / cover;
+    // height: 100vh; /* Ocupar toda la altura de la pantalla */
+    // width: 100vw; /* Ocupar toda la anchura */
+}
+
+.presentation {
+    background: rgba(222, 222, 221, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,130 @@
+<app-header tittle="CONTRATOS" [emergent]="emergent" [seeMenus]="seeMenus" [logOut]="1" icon="newspaper-outline"
+  moduleId="contract" [refresh]="true" (exit)="ouputEvents($event)"></app-header>
+
+<ion-content class="bg-image">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="7" class="text-end" *ngIf="aListContract.length > 1">
+      </ion-col>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="5" class="text-end" *ngIf="aListContract.length > 1">
+        <ion-card>
+          <ion-input fill="outline" placeholder="Buscar por n° contrato, certificado, cod. asociado, estado..." [(ngModel)]="textFilter"
+          (input)="updateFilter($event)">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide" >
+              <ion-icon slot="icon-only" name="search-outline" aria-hidden="true"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-card>
+      </ion-col>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="4" sizeXl="4"
+      *ngFor="let item of aListContractFilter let i = index">
+        <ion-card>
+          <ion-fab vertical="top" horizontal="end" *ngIf="item.hasReturn !== '2'">
+            <ion-fab-button title="Opciones" color="medium">
+              <ion-icon name="settings-outline"></ion-icon>
+              <!-- <ion-icon name="chevron-down-circle"></ion-icon> -->
+            </ion-fab-button>
+            <ion-fab-list side="bottom">
+              <ion-fab-button title="Ver" color="secondary">
+                <ion-icon name="eye-outline"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button title="Remate" color="tertiary">
+                <span style="color: #fff;"><b>R</b></span>
+              </ion-fab-button>
+            </ion-fab-list>
+            <!-- <ion-fab-button title="Ver">
+              <ion-icon name="eye-outline" size="large"></ion-icon>
+            </ion-fab-button> -->
+          </ion-fab>
+          <ion-card-header>
+            <ion-card-subtitle>
+              Programa {{ item.programName }}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-grid>
+            <ion-row>
+              <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12">
+                <ion-item lines="none">
+                  <ion-thumbnail slot="start" style="background-color: #ede9e9;">
+                    <img src="../../../../../assets/img/modules/logosmall.png"/>
+                  </ion-thumbnail>
+                  <ion-label style="width: 100%;">
+                    <ion-grid class="ion-no-padding">
+                      <ion-row>
+                        <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12">
+                          <ion-card-title>
+                            <b style="cursor: pointer;">
+                              Contrato {{ item.number }}
+                            </b>
+                          </ion-card-title>
+                        </ion-col>
+                        <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12">
+                          <ion-card-subtitle>
+                            Grupo {{ item.groupCode }}, Código de asociado {{ item.groupCode }}-{{ item.positionDisplayName }}
+                          </ion-card-subtitle>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12">
+                <ion-item lines="none">
+                  <ion-grid class="ion-no-padding">
+                    <ion-row>
+                      <ion-col sizeXs="5" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+                        <ion-card-subtitle class="fs-6">
+                          Estado:
+                        </ion-card-subtitle>
+                        <ion-badge color="primary" class="fs-7">{{item.contractStatusName}}</ion-badge>
+                      </ion-col>
+                      <ion-col sizeXs="7" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+                        <ion-card-subtitle class="fs-6">
+                          Certificado:
+                        </ion-card-subtitle>
+                        <b class="fs-7">USD {{ item.certificateAmount | number: '1.2-2' }}</b>
+                      </ion-col>
+                      <ion-col sizeXs="7" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+                        <ion-card-subtitle class="fs-6">
+                          Cuota mensual:
+                        </ion-card-subtitle>
+                        <b class="fs-7">USD {{ item.impCapitalTotal | number: '1.2-2' }}</b>
+                      </ion-col>
+                      <ion-col sizeXs="5" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+                        <ion-card-subtitle class="fs-6">
+                          Perfil:
+                        </ion-card-subtitle>
+                        <b class="fs-7">{{ item.profileName }}</b>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+                <br>
+              </ion-col>
+              <ion-col sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+                <ion-card-subtitle class="p-2">
+                  <ion-icon name="bar-chart-outline"></ion-icon>&nbsp;{{ item.term }} cuotas
+                </ion-card-subtitle>
+              </ion-col>
+              <ion-col sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="6" sizeXl="6">
+                <ion-card-subtitle class="p-2 text-end">
+                  <ion-icon name="calendar-outline"></ion-icon>&nbsp;{{ item.admissionDate | date: 'dd MMMM, yyy' : 'es-ES' }}
+                </ion-card-subtitle>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" *ngIf="aListContractFilter.length === 0">
+          <ion-card class="presentation">
+              <ion-card-header>
+                  <ion-card-subtitle class="text-center">
+                      <span><b>SIN RESULTADOS ...</b></span>
+                  </ion-card-subtitle>
+              </ion-card-header>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

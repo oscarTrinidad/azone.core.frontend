@@ -1,0 +1,38 @@
+<app-header tittle="A-ZONE" [emergent]="emergent" [seeMenus]="seeMenus" [logOut]="logOut" moduleId="home"
+[refresh]="false" (salida)="ouputEvents($event)"></app-header>
+<ion-content class="bg-image">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" *ngIf="emergent === false">
+                <ion-card class="presentation">
+                    <ion-card-header>
+                        <ion-card-subtitle class="text-center sub-title-presentation">
+                            <span><b>BIENVENIDOS A LA ZONA DE ASOCIADOS</b></span>
+                        </ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content class="presentation-content">
+                        <p>Esta es una plataforma segura de Proponte EAFC, donde podrá gestionar todo lo relacionado a sus contratos, remates, etc. Si tienes dudas sobre la autenticidad o el uso de la web, 
+                        comunícate con nosotros al (01) 708-5443 o a través de nuestros medios digitales.</p>
+                        <p>Proponte S.A.C. EAFC - RUC: 20609591278</p>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col sizeXs="12" [sizeSm]="emergent? 12 : 6" [sizeMd]="emergent? 12 : 4" [sizeLg]="emergent? 12 : 4" [sizeXl]="emergent? 12 : 4" 
+            *ngFor="let item of aListModuleGlobal let i = index">
+                <ion-card class="menu card-button" (click)="openRoute(item.route)">
+                    <div class="image-container" style="display: flex; justify-content: center; align-items: center;">
+                    <img [src]="item.srcImage" class="img-module" />
+                    </div>
+                    <ion-card-header>
+                        <ion-card-subtitle class="sub-title-menu">
+                            <ion-icon [name]="item.icon"></ion-icon> {{item.name}}
+                        </ion-card-subtitle>
+                    </ion-card-header>
+                    <!-- <ion-button expand="block" (click)="openRoute(item.route)" color="primary">
+                        <ion-icon name="arrow-redo-circle-outline" size="large"></ion-icon>
+                    </ion-button> -->
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

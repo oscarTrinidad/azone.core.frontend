@@ -1,0 +1,99 @@
+<app-header tittle="ASAMBLEAS" [emergent]="emergent" [seeMenus]="seeMenus" [logOut]="1" icon="today-outline"
+  moduleId="meeting" [refresh]="true" (exit)="ouputEvents($event)"></app-header>
+<ion-content class="bg-image">
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="7" class="text-end" *ngIf="aListMeeting.length > 1">
+      </ion-col>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="6" sizeXl="5" class="text-end" *ngIf="aListMeeting.length > 1">
+        <ion-card>
+          <ion-input fill="outline" placeholder="Busqueda general..." [(ngModel)]="textFilter"
+          (input)="updateFilter($event)">
+            <ion-button fill="clear" slot="end" aria-label="Show/hide" >
+              <ion-icon slot="icon-only" name="search-outline" aria-hidden="true"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-card>
+      </ion-col>
+      <!-- <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="2" sizeXl="6" class="text-end" *ngIf="aListMeeting.length > 1">
+      </ion-col> -->
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12" *ngIf="aListMeetingFilter.length > 0">
+        <ion-card class="presentation">
+          <!-- <ion-card-header>
+            <ion-card-title><b>Próximas asambleas</b></ion-card-title>
+          </ion-card-header> -->
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12">
+                  <ion-card>
+                    <ion-list lines="full">
+                      <ion-item *ngFor="let item of aListMeetingFilter let i = index">
+                        <ion-thumbnail slot="start" style="background-color: #ede9e9;">
+                          <div>
+                            <div class="text-center">
+                              <h3 class="mb-0 fs-6 lh-1"><b>{{ item.dateReg | date: 'MMM' : 'es-ES' }}</b></h3>
+                              <h3 class="mb-0 fs-6 lh-1"><b>{{ item.dateReg | date: 'dd' : 'es-ES' }}</b></h3>
+                              <div class="text-muted text-center lh-1">{{ item.dateReg | date: 'EEE' : 'es-ES' }}</div>
+                            </div>
+                          </div>
+                        </ion-thumbnail>
+                        <ion-label style="width: 100%;">
+                          <ion-grid class="ion-no-padding">
+                            <ion-row>
+                              <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
+                                <span>Hora: {{ item.hourReg }}</span>
+                              </ion-col>
+                              <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
+                                <span>Año: <b>{{ item.dateReg | date: 'yyyy' : 'es-ES' }}</b></span>
+                              </ion-col>
+                              <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
+                                <span>Grupo: {{ item.groupCode }}</span>
+                              </ion-col>
+                              <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
+                                <span>Asamblea número: 0{{ item.feeNumber }} </span>
+                              </ion-col>
+                              <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12">
+                                <span>Dirección: {{ item.location }}</span>
+                              </ion-col>
+                              <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12">
+                                <span>Referencia: {{ item.details }}</span>
+                              </ion-col>
+                              <ion-col sizeXs="12" sizeSm="12" sizeMd="12" sizeLg="12" sizeXl="12" class="d-sm-none">
+                                <span>Programa: <ion-badge><b>{{ item.programName }}</b></ion-badge></span>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                        </ion-label>
+                        <ion-badge slot="end" class="fs-5 p-2 d-sm-block d-none">
+                          <b>{{ item.programName }}</b>
+                        </ion-badge>
+                        <!-- <ion-thumbnail slot="end" style="background-color: #ede9e9;">
+                          <div>
+                            <div class="text-center">
+                              <h5 class="fs-6"><b>{{ item.programName }}</b></h5>
+                            </div>
+                          </div>
+                        </ion-thumbnail> -->
+                      </ion-item>
+                    </ion-list>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>      
+      
+      <ion-col size="12" *ngIf="aListMeetingFilter.length === 0">
+        <ion-card class="presentation">
+            <ion-card-header>
+                <ion-card-subtitle class="text-center">
+                    <span><b>SIN RESULTADOS ...</b></span>
+                </ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

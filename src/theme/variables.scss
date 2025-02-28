@@ -1,2 +1,22 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+
+:root {
+    --ion-color-proponte: #FFD414;
+    --ion-color-proponte-rgb: 255, 212, 20;
+    --ion-color-proponte-contrast: #000;
+    --ion-color-proponte-contrast-rgb: 0, 0, 0;
+    --ion-color-proponte-shade: #e0bc12;
+    --ion-color-proponte-tint: #ffdb48;
+  }
+  
+  /* Agregar el color a la configuración de Ionic */
+  .ion-color-proponte {
+    --ion-color-base: var(--ion-color-proponte);
+    --ion-color-base-rgb: var(--ion-color-proponte-rgb);
+    --ion-color-contrast: var(--ion-color-proponte-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-proponte-contrast-rgb);
+    --ion-color-shade: var(--ion-color-proponte-shade);
+    --ion-color-tint: var(--ion-color-proponte-tint);
+  }
+  

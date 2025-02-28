@@ -1,0 +1,97 @@
+<div class="bg-image">
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px;" *ngIf="!bUpdate">
+      <div class="text-center mb-3 brand">
+        <ion-icon name="person-circle-outline" size="large"></ion-icon>
+        <h2 class="mt-2"><img src="../../../assets/img/login-bg/log.png" width="50" height="50"> <b>A-ZONE</b></h2>
+        <small style="color: #574e4e;"><b>Zona de asociados.</b></small>
+      </div>
+      
+      <form [formGroup]="formGroup" (ngSubmit)="onLogin()">
+        <div class="form-row">
+          <div class="form-group mb-3">
+            <!-- <label for="username" class="form-label"><b>Usuario</b></label> -->
+            <ion-input label="Usuario" label-placement="floating" fill="outline"
+            style="--highlight-color: var(--ion-color-primary);"
+            placeholder="Ingrese su usuario" formControlName="username"></ion-input>
+            <!-- <ion-input formControlName="username" type="username" class="form-control" placeholder="Ingrese su usuario"></ion-input> -->
+          </div>
+          
+          <div class="form-group mb-3">
+            <ion-input label="Contraseña" label-placement="floating" fill="outline" type="password" 
+            style="--highlight-color: var(--ion-color-primary);"
+            placeholder="Ingrese su contraseña" formControlName="password">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+            <!-- <label for="password" class="form-label"><b>Contraseña</b></label>
+            <ion-input formControlName="password" type="password" class="form-control" placeholder="Ingrese su contraseña"></ion-input> -->
+          </div>
+
+          <div class="form-group text-center mb-3 brand">
+            <small>Al acceder, aceptas los <a target="_blank" href="https://asociados.proponte.com.pe/public/terminos-condiciones"><b>términos y condiciones.</b></a>.</small>
+          </div>
+  
+          <ion-button expand="block" type="submit" color="primary">
+            <ion-icon slot="start" name="log-in-outline"></ion-icon>Ingresar
+          </ion-button>
+        </div>
+      </form>
+
+      <!-- <div class="text-center mt-3">
+        <a href="#" class="text-primary">¿Olvidaste tu contraseña?</a>
+      </div> -->
+    </div>
+    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px;" *ngIf="bUpdate">
+      <ion-buttons slot="start">
+        <ion-button (click)="goBack()">
+          <ion-icon name="arrow-back-circle-outline" size="large"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <div class="text-center mb-3 brand">
+        <h2 class="mt-2"><img src="../../../assets/img/login-bg/log.png" width="50" height="50"> <b>A-ZONE</b></h2>
+        <p style="color: #574e4e;"><b>Cambio de contraseña</b></p>
+      </div>
+      
+      <form [formGroup]="formGroup2" (ngSubmit)="proceedLogin()">
+        <div class="form-row">
+          <div class="form-group mb-3">
+            <ion-input label="Nueva contraseña" label-placement="floating" fill="outline" type="password"
+            [ngStyle]="{
+              '--highlight-color': e.password ? 'var(--ion-color-danger)' : 'var(--ion-color-primary)'
+            }" (change)="e.password = ''"
+            formControlName="password" ngModel>
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+            <ion-note slot="e.password" color="danger">{{e.password}}</ion-note>
+            <!-- <label for="password" class="form-label"><b>Nueva contraseña</b></label>
+            <ion-input formControlName="password" type="password" class="form-control" 
+            placeholder="Ingrese su contraseña" [errorText]="e.password"></ion-input> -->
+          </div>
+          
+          <div class="form-group mb-3">
+            <ion-input label="Repetir nueva contraseña" label-placement="floating" fill="outline" type="password"
+            [ngStyle]="{
+              '--highlight-color': e.password ? 'var(--ion-color-danger)' : 'var(--ion-color-primary)'
+            }" (change)="e.repeatPassword = ''"
+            formControlName="repeatPassword" ngModel>
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+            <ion-note slot="e.password" color="danger">{{e.repeatPassword}}</ion-note>
+            <!-- <label for="repeatPassword" class="form-label"><b>Repetir nueva contraseña</b></label>
+            <ion-input formControlName="repeatPassword" type="password" class="form-control" 
+            placeholder="Ingrese su contraseña" [errorText]="e.repeatPassword"></ion-input> -->
+          </div>
+  
+          <ion-button expand="block" type="submit" color="primary">
+            <ion-icon slot="start" name="save-outline" size="small"></ion-icon> Guardar
+          </ion-button>
+        </div>
+      </form>
+
+      <!-- <div class="text-center mt-3">
+        <a href="#" class="text-primary">¿Olvidaste tu contraseña?</a>
+      </div> -->
+    </div>
+  </div>
+</div>

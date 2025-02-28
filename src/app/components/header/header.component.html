@@ -1,0 +1,87 @@
+<ion-header>
+    <ion-toolbar color="proponte">
+        <ion-buttons slot="start" *ngIf="seeSubMenu !== ''">
+            <ion-menu-button [menu]="seeSubMenu"></ion-menu-button>
+        </ion-buttons>
+        <!-- <ion-buttons slot="secondary">
+            <ion-button expand="block">
+                <ion-grid class="ion-no-padding">
+                    <ion-row class="ion-align-items-center">
+                        <ion-col size="auto">
+                            <ion-title>
+                                <span *ngIf="!icon"><img src="../../../assets/img/login-bg/log.png" width="30"
+                                        height="30">&nbsp;<b>{{
+                                        tittle }}</b></span>
+                                <span *ngIf="icon">
+                                    <b>{{ tittle }}</b>
+                                    <ion-icon [name]="icon"></ion-icon>
+                                </span>
+                            </ion-title>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-button>
+        </ion-buttons> -->
+        <ion-title *ngIf="tittle">
+            <span *ngIf="!icon">
+                <span *ngIf="!emergent">
+                    <img src="../../../assets/img/login-bg/log.png" width="30" height="30">&nbsp;<b>{{
+                        tittle }}</b>
+                </span>
+                <span *ngIf="emergent">
+                    <ion-icon name="apps-outline"></ion-icon>&nbsp;<b>MENÚS</b>
+                </span>
+            </span>
+            <span *ngIf="icon">
+                <ion-icon [name]="icon"></ion-icon>&nbsp;
+                <b>{{ tittle }}</b>
+            </span>
+        </ion-title>
+        <ion-buttons slot="end" size="small">
+            <ion-button *ngIf="refresh" (click)="exitEvents('refresh')">
+                <ion-icon name="refresh-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="seeMenus" (click)="modalMenus()">
+                <ion-icon name="apps-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="emergent" (click)="closeModal()">
+                <ion-icon name="close-circle-outline"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="logOut" [id]="tittle">
+                <ion-grid class="ion-no-padding">
+                    <ion-row class="ion-align-items-center">
+                        <!-- Icono de usuario a la izquierda -->
+                        <ion-col size="auto">
+                            <ion-icon name="person-circle-outline" size="large"></ion-icon>
+                        </ion-col>
+
+                        <!-- Nombre y rol a la derecha -->
+                        <ion-col class="d-sm-block d-none">
+                            <div class="user-info">
+                                <div class="username">{{dataUser.documentName + ' ' + dataUser.number}}</div>
+                                <div class="user-role">{{ dataUser.typeName }}</div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-button>
+        </ion-buttons>
+        <ion-popover [trigger]="tittle" [dismissOnSelect]="true">
+            <ng-template>
+                <ion-content>
+                    <ion-list>
+                        <ion-item [button]="false" [detail]="false">Hola {{ dataUser.fullName }}!</ion-item>
+                        <!-- </ion-list>
+                    <ion-list> -->
+                        <ion-item [button]="true" [detail]="false" (click)="home()" *ngIf="tittle !== 'A-ZONE'">
+                            <ion-icon name="home"></ion-icon>&nbsp;
+                            Inicio</ion-item>
+                        <ion-item [button]="true" [detail]="false" (click)="closedSession()">
+                            <ion-icon name="log-out-outline"></ion-icon>&nbsp;
+                            Cerrar Sesión</ion-item>
+                    </ion-list>
+                </ion-content>
+            </ng-template>
+        </ion-popover>
+    </ion-toolbar>
+</ion-header>
